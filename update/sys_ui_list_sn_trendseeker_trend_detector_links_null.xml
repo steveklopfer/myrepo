@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="sn_trendseeker_trend_detector_links" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>number</element>
+            <list_id display_value="sn_trendseeker_trend_detector_links" element="NULL" name="sn_trendseeker_trend_detector_links" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4190f8820172210002adb94da6e1bdba</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2014-08-29 02:39:41</sys_created_on>
+            <sys_id>0990f8820172210002adb94da6e1bdba</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2014-08-29 02:39:41</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>trend_detector_rule</element>
+            <list_id display_value="sn_trendseeker_trend_detector_links" element="NULL" name="sn_trendseeker_trend_detector_links" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4190f8820172210002adb94da6e1bdba</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2014-08-29 02:39:41</sys_created_on>
+            <sys_id>4990f8820172210002adb94da6e1bdba</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2014-08-29 02:39:41</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>trend_detector_correlation</element>
+            <list_id display_value="sn_trendseeker_trend_detector_links" element="NULL" name="sn_trendseeker_trend_detector_links" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4190f8820172210002adb94da6e1bdba</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2014-08-29 02:39:41</sys_created_on>
+            <sys_id>8990f8820172210002adb94da6e1bdba</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2014-08-29 02:39:41</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>detected_record</element>
+            <list_id display_value="sn_trendseeker_trend_detector_links" element="NULL" name="sn_trendseeker_trend_detector_links" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4190f8820172210002adb94da6e1bdba</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2014-08-29 02:39:41</sys_created_on>
+            <sys_id>c990f8820172210002adb94da6e1bdba</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2014-08-29 02:39:41</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>created_record</element>
+            <list_id display_value="sn_trendseeker_trend_detector_links" element="NULL" name="sn_trendseeker_trend_detector_links" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4190f8820172210002adb94da6e1bdba</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2014-08-29 02:39:41</sys_created_on>
+            <sys_id>0d90f8820172210002adb94da6e1bdba</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2014-08-29 02:39:41</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>sn_trendseeker_trend_detector_links</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2014-08-29 02:39:41</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4190f8820172210002adb94da6e1bdba</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sn_trendseeker_trend_detector_links</sys_name>
+            <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+            <sys_update_name>sys_ui_list_sn_trendseeker_trend_detector_links_null</sys_update_name>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2014-08-29 02:39:41</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

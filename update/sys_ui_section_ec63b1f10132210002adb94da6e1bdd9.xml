@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_section caption="What to detect" section_id="ec63b1f10132210002adb94da6e1bdd9" sys_domain="global" table="sn_trendseeker_trend_detector_rules" version="3" view="">
+        <sys_ui_annotation action="INSERT_OR_UPDATE">
+            <is_plain_text>false</is_plain_text>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>6cb9b71c0f723100c8badf2be1050e5c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <text>&lt;ul&gt;&lt;li&gt;&lt;b&gt;Detection table&lt;/b&gt;: Table on which to detect trend.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Timeframe&lt;/b&gt;: Timeframe backwards, from moment when rule runs (every 12 hours), over which to assess (ie - count of records over past 7 days = 168 hours).&lt;/li&gt;&lt;li&gt;&lt;b&gt;Cool down&lt;/b&gt;: Time after the most recent record association when the current detection instance expires. Subsequent detections will spawn a new detection instance.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Apply aggregate?&lt;/b&gt;: Measure against records matching Conditions, grouped on an aggregate field (ie - Count of records with the same category). When false, measure all records matching Conditions.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Apply schedule?&lt;/b&gt;: Only include records created outside (exclusive) or inside (inclusive) a given schedule. Useful when accounting for blackout windows or other 'non-normal' time periods.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Threshold type&lt;/b&gt;: Type of threshold against which counts are measured - either a hard threshold or a scripted statistical measurement.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Direction&lt;/b&gt;: Trigger a detection when the count is either Above or Below the given threshold.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Threshold&lt;/b&gt;: Count of matching records necessary to trigger detection rule. Count must be &lt;i&gt;greater&lt;/i&gt; or &lt;i&gt;less&lt;/i&gt; than the threshold indicated.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Threshold script&lt;/b&gt;: Script to be evaluated in order to determine the threshold value.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Statistical window&lt;/b&gt;: The running number of past days over which statistical measurements are calculated. &lt;i&gt;(Statistical measurements will accrue over time after a rule is created. Until a full window of historic measures is accrued, the statistical measure of available values is used).&lt;/i&gt;&lt;/li&gt;&lt;li&gt;&lt;b&gt;Condition&lt;/b&gt;: Conditions which must be matched in order for a record to be included in the count.&lt;/li&gt;&lt;/ul&gt;</text>
+            <type display_value="Info Box Blue">753f88a80f930000b12e6903cfe01206</type>
+        </sys_ui_annotation>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>6cb9b71c0f723100c8badf2be1050e5c</element>
+            <position>0</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>acb9b71c0f723100c8badf2be1050e5c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type>annotation</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>1</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>ecb9b71c0f723100c8badf2be1050e5c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>detection_table</element>
+            <position>2</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>20b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>timeframe</element>
+            <position>3</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>60b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>expiration</element>
+            <position>4</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>a0b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>apply_aggregate</element>
+            <position>5</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>e0b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>aggregate_field</element>
+            <position>6</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>24b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>apply_schedule</element>
+            <position>7</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>64b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>schedule</element>
+            <position>8</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>a4b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>schedule_type</element>
+            <position>9</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>e4b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>10</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>28b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>detection_type</element>
+            <position>11</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>68b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>direction</element>
+            <position>12</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>a8b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>threshold</element>
+            <position>13</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>e8b9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>threshold_script</element>
+            <position>14</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>2cb9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>statistical_window</element>
+            <position>15</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>6cb9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>16</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>acb9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>condition</element>
+            <position>17</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-11 03:00:10</sys_created_on>
+            <sys_id>ecb9b71c0f723100c8badf2be1050e5d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to detect" display_value="What to detect" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">ec63b1f10132210002adb94da6e1bdd9</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-11 03:00:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>What to detect</caption>
+            <header>false</header>
+            <name>sn_trendseeker_trend_detector_rules</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2014-08-28 12:53:05</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>ec63b1f10132210002adb94da6e1bdd9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>What to detect</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+            <sys_update_name>sys_ui_section_ec63b1f10132210002adb94da6e1bdd9</sys_update_name>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2014-08-28 12:53:05</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

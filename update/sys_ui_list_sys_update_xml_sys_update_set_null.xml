@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="sys_update_set" relationship="" sys_domain="global" table="sys_update_xml" version="2" view="">
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>sys_update_xml</name>
+            <parent>sys_update_set</parent>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>sean.barrett@snc</sys_created_by>
+            <sys_created_on>2016-03-16 02:36:22</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>951ade7f130e920063a530f82244b0d2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sys_update_xml</sys_name>
+            <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+            <sys_update_name>sys_ui_list_sys_update_xml_sys_update_set_null</sys_update_name>
+            <sys_updated_by>sean.barrett@snc</sys_updated_by>
+            <sys_updated_on>2016-03-16 02:36:22</sys_updated_on>
+            <sys_user display_value="">sean.barrett@snc</sys_user>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

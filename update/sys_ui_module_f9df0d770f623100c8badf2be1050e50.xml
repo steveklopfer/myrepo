@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_ui_module">
+    <sys_ui_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="TrendSeeker">3ddf0d770f623100c8badf2be1050e4f</application>
+        <filter/>
+        <name>Trend Detector Metrics</name>
+        <order/>
+        <path/>
+        <path_relative_to_root>false</path_relative_to_root>
+        <roles>sn_trendseeker.trend_detector_admin</roles>
+        <sys_class_name>sys_ui_module</sys_class_name>
+        <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+        <sys_created_on>2015-03-09 01:21:06</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>f9df0d770f623100c8badf2be1050e50</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Trend Detector Metrics</sys_name>
+        <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+        <sys_update_name>sys_ui_module_f9df0d770f623100c8badf2be1050e50</sys_update_name>
+        <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+        <sys_updated_on>2015-03-09 01:21:06</sys_updated_on>
+        <table>sn_trendseeker_trend_detector_metrics</table>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+    </sys_ui_module>
+</record_update>

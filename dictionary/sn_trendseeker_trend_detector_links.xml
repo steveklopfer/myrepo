@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="TrendSeeker Links" max_length="40" name="sn_trendseeker_trend_detector_links" type="collection">
+        <element dependent="created_record_table" dependent_on_field="created_record_table" hint="Record created as a result of the detection" label="Created record" max_length="32" name="created_record" read_only="true" type="document_id" use_dependent_field="true"/>
+        <element label="Created record table" max_length="40" name="created_record_table" read_only="true" type="table_name"/>
+        <element dependent="detected_record_table" dependent_on_field="detected_record_table" hint="Record whose detection triggered the link" label="Detected record" max_length="32" name="detected_record" read_only="true" type="document_id" use_dependent_field="true"/>
+        <element label="Detected record table" max_length="40" name="detected_record_table" read_only="true" type="table_name"/>
+        <element default="javascript:global.getNextObjNumberPadded();" display="true" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <element hint="Parent Correlation for the link" label="Correlation" max_length="32" name="trend_detector_correlation" read_only="true" reference="sn_trendseeker_trend_detector_correlations" reference_cascade_rule="delete" type="reference"/>
+        <element hint="Rule that triggered the detector link" label="Rule" max_length="32" name="trend_detector_rule" read_only="true" reference="sn_trendseeker_trend_detector_rules" type="reference"/>
+        <index name="index">
+            <element name="detected_record"/>
+        </index>
+        <index name="index2">
+            <element name="created_record"/>
+        </index>
+        <index name="index3">
+            <element name="trend_detector_correlation"/>
+        </index>
+        <index name="index4">
+            <element name="trend_detector_rule"/>
+        </index>
+    </element>
+</database>

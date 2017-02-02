@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="TrendSeeker Rules" max_length="40" name="sn_trendseeker_trend_detector_rules" type="collection">
+        <element default="true" hint="Activate/deactivate rule for detection" label="Active" max_length="40" name="active" type="boolean"/>
+        <element dependent="detection_table" dependent_on_field="detection_table" hint="Field against which to aggregate counts" label="Aggregate field" max_length="40" name="aggregate_field" type="field_name" use_dependent_field="true"/>
+        <element hint="Assess rule against an aggregation field?" label="Apply aggregate?" max_length="40" name="apply_aggregate" type="boolean"/>
+        <element hint="Assess rule only inside or outside a particular schedule?" label="Apply schedule?" max_length="40" name="apply_schedule" type="boolean"/>
+        <element hint="Apply template to created record?" label="Apply template?" max_length="40" name="apply_template" type="boolean"/>
+        <element dependent="detection_table" dependent_on_field="detection_table" label="Condition" max_length="4000" name="condition" type="conditions" use_dependent_field="true"/>
+        <element hint="React to correlation by creating a record?" label="Create record?" max_length="40" name="create_record" type="boolean"/>
+        <element default="//The new record is available as 'newRec'. You may set any desired fields against that object, ie:&#13;&#10;//newRec.short_description = 'This record auto-generated based on a trend';&#13;&#10;//&#13;&#10;//Other available variables:&#13;&#10;//allRecIDs = comma-separated string containing the sys_ids of the associated records when correlation is initially triggered&#13;&#10;//Available variables when using an aggregate:&#13;&#10;//aggValue = display value of the aggregate field choice, ie: Category field has an aggValue of 'Software'&#13;&#10;//aggID = internal value of the aggregate field choice, ie: Location field has an aggID of its sys_id&#13;&#10;//&#13;&#10;//Any rule values can be access via 'rule', ie:&#13;&#10;//newRec.short_description = 'Found more than ' + rule.threshold + ' records with same ' + rule.aggregate_field&#13;&#10;//newRec.description = 'SysIDs of associated records are ' + allRecIDs;" label="Creation script" max_length="8000" name="creation_script" type="script_plain"/>
+        <element hint="Table for record creation" label="Creation table" max_length="40" name="creation_table" type="table_name"/>
+        <element label="Description" max_length="1000" name="description" type="string"/>
+        <element hint="Table for detection" label="Detection table" mandatory="true" max_length="40" name="detection_table" type="table_name"/>
+        <element choice="1" hint="Type of threshold, whether static or a scripted statistical measurement." label="Threshold type" mandatory="true" max_length="40" name="detection_type" type="string">
+            <choice>
+                <element label="Static Threshold" sequence="0" value="static_threshold"/>
+                <element label="Scripted Threshold" sequence="1" value="scripted_threshold"/>
+            </choice>
+        </element>
+        <element choice="3" default="above" hint="Trigger detection when count is Above or Below the given threshold" label="Direction" max_length="40" name="direction" type="string">
+            <choice>
+                <element label="Above" sequence="0" value="above"/>
+                <element label="Below" sequence="1" value="below"/>
+            </choice>
+        </element>
+        <element hint="Length of time with no additional correlations necessary to deactivate Correlation instance" label="Cool down (hours)" mandatory="true" max_length="40" name="expiration" type="integer"/>
+        <element default="javascript:global.getNextObjNumberPadded();" display="true" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <element hint="Schedule against which to assess rule." label="Schedule" max_length="32" name="schedule" reference="cmn_schedule" type="reference"/>
+        <element choice="3" default="exclusive" hint="Only assess rule within (inclusive) or without (exclusive) the given schedule." label="Schedule type" max_length="40" name="schedule_type" type="string">
+            <choice>
+                <element label="Exclusive" sequence="0" value="exclusive"/>
+                <element label="Inclusive" sequence="1" value="inclusive"/>
+            </choice>
+        </element>
+        <element default="7" hint="The running number of past days over which to calculate statistical measurements." label="Statistical window (days)" max_length="40" name="statistical_window" type="integer"/>
+        <element label="Statistics begin" max_length="40" name="statistics_begin" read_only="true" type="glide_date_time"/>
+        <element hint="Template to apply to created record" label="Template" max_length="32" name="template" reference="sys_template" reference_qual="javascript:'table=' + current.creation_table" type="reference" use_reference_qualifier="advanced"/>
+        <element hint="Threshold to trigger a correlation (count must be greater than threshold)" label="Threshold" mandatory="true" max_length="40" name="threshold" type="integer"/>
+        <element hint="Script record to evaluate for the threshold" label="Threshold script" max_length="32" name="threshold_script" reference="sn_trendseeker_trend_detector_scripts" type="reference"/>
+        <element hint="Timeframe (backwards from now) over which to assess the rule" label="Timeframe (hours)" mandatory="true" max_length="40" name="timeframe" type="integer"/>
+        <element hint="Title for Detector Rule" label="Title" mandatory="true" max_length="80" name="title" type="string"/>
+        <index name="index">
+            <element name="template"/>
+        </index>
+        <index name="index2">
+            <element name="schedule"/>
+        </index>
+        <index name="index3">
+            <element name="threshold_script"/>
+        </index>
+    </element>
+</database>

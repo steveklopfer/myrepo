@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="detection_type" label="Threshold type" language="en" table="sn_trendseeker_trend_detector_rules">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>detection_type</element>
+            <help/>
+            <hint>Type of threshold, whether static or a scripted statistical measurement.</hint>
+            <label>Threshold type</label>
+            <language>en</language>
+            <name>sn_trendseeker_trend_detector_rules</name>
+            <plural>Threshold types</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-09 00:52:04</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_id>e439c1770f623100c8badf2be1050e12</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_name>Threshold type</sys_name>
+            <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+            <sys_update_name>sys_documentation_sn_trendseeker_trend_detector_rules_detection_type_en</sys_update_name>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-10 22:50:46</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

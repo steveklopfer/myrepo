@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="expiration" label="Cool down (hours)" language="en" table="sn_trendseeker_trend_detector_rules">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>expiration</element>
+            <help/>
+            <hint>Length of time with no additional correlations necessary to deactivate Correlation instance</hint>
+            <label>Cool down (hours)</label>
+            <language>en</language>
+            <name>sn_trendseeker_trend_detector_rules</name>
+            <plural>Cool down (hours)</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2014-08-28 21:17:38</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_id>6fd6677d0132210002adb94da6e1bd35</sys_id>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_name>Cool down (hours)</sys_name>
+            <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+            <sys_update_name>sys_documentation_sn_trendseeker_trend_detector_rules_expiration_en</sys_update_name>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2014-08-29 16:13:31</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

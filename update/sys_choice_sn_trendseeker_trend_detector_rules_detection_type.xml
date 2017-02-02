@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="detection_type" table="sn_trendseeker_trend_detector_rules" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>detection_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Static Threshold</label>
+            <language>en</language>
+            <name>sn_trendseeker_trend_detector_rules</name>
+            <sequence>0</sequence>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-09 00:53:09</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>9c79cd370f623100c8badf2be1050efe</sys_id>
+            <sys_mod_count>5</sys_mod_count>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-10 22:46:01</sys_updated_on>
+            <value>static_threshold</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>detection_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Scripted Threshold</label>
+            <language>en</language>
+            <name>sn_trendseeker_trend_detector_rules</name>
+            <sequence>1</sequence>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-09 00:53:09</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1479cd370f623100c8badf2be1050eff</sys_id>
+            <sys_mod_count>7</sys_mod_count>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-10 22:46:12</sys_updated_on>
+            <value>scripted_threshold</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>detection_type</element>
+            <name>sn_trendseeker_trend_detector_rules</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-09 00:53:09</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>3ad9d47c4fe0b200ffbb7d2ca310c75f</sys_id>
+            <sys_mod_count>32</sys_mod_count>
+            <sys_name>detection_type</sys_name>
+            <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+            <sys_update_name>sys_choice_sn_trendseeker_trend_detector_rules_detection_type</sys_update_name>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-12 01:59:34</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

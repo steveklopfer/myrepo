@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_section caption="What to create" section_id="661475350132210002adb94da6e1bdba" sys_domain="global" table="sn_trendseeker_trend_detector_rules" version="3" view="">
+        <sys_ui_annotation action="INSERT_OR_UPDATE">
+            <is_plain_text>false</is_plain_text>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-03 21:23:08</sys_created_on>
+            <sys_id>e76926020f623100c8badf2be1050e41</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-03 21:23:08</sys_updated_on>
+            <text>&lt;p&gt;&lt;i&gt;In order for TrendSeeker to create records, the creation table must have 'Can create' and 'Can update' application access enabled for all application scopes (edit this setting at &lt;b&gt;System Definition &gt; Tables&lt;/b&gt; in the left nav.&lt;/i&gt;&lt;/p&gt;&#13;
+&lt;ul&gt;&lt;li&gt;&lt;b&gt;Creation table&lt;/b&gt;: Table on which to create resulting record (if detection rules are met).&lt;/li&gt;&lt;li&gt;&lt;b&gt;Apply template?&lt;/b&gt;: Apply a template against the resulting record.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Creation script&lt;/b&gt;: Script to set values on resulting record.&lt;/li&gt;&lt;/ul&gt;</text>
+            <type display_value="Info Box Blue">753f88a80f930000b12e6903cfe01206</type>
+        </sys_ui_annotation>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>e76926020f623100c8badf2be1050e41</element>
+            <position>0</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-03 21:23:08</sys_created_on>
+            <sys_id>2b6926020f623100c8badf2be1050e41</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to create" display_value="What to create" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">661475350132210002adb94da6e1bdba</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-03 21:23:08</sys_updated_on>
+            <sys_user/>
+            <type>annotation</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>create_record</element>
+            <position>1</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-03 21:23:08</sys_created_on>
+            <sys_id>6b6926020f623100c8badf2be1050e41</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to create" display_value="What to create" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">661475350132210002adb94da6e1bdba</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-03 21:23:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>2</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-03 21:23:08</sys_created_on>
+            <sys_id>ab6926020f623100c8badf2be1050e41</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to create" display_value="What to create" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">661475350132210002adb94da6e1bdba</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-03 21:23:08</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>creation_table</element>
+            <position>3</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-03 21:23:08</sys_created_on>
+            <sys_id>eb6926020f623100c8badf2be1050e41</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to create" display_value="What to create" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">661475350132210002adb94da6e1bdba</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-03 21:23:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>4</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-03 21:23:08</sys_created_on>
+            <sys_id>2f6926020f623100c8badf2be1050e41</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to create" display_value="What to create" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">661475350132210002adb94da6e1bdba</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-03 21:23:08</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>apply_template</element>
+            <position>5</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-03 21:23:08</sys_created_on>
+            <sys_id>6f6926020f623100c8badf2be1050e41</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to create" display_value="What to create" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">661475350132210002adb94da6e1bdba</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-03 21:23:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>template</element>
+            <position>6</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-03 21:23:08</sys_created_on>
+            <sys_id>af6926020f623100c8badf2be1050e41</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to create" display_value="What to create" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">661475350132210002adb94da6e1bdba</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-03 21:23:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>7</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-03 21:23:08</sys_created_on>
+            <sys_id>ef6926020f623100c8badf2be1050e41</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to create" display_value="What to create" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">661475350132210002adb94da6e1bdba</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-03 21:23:08</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>creation_script</element>
+            <position>8</position>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2015-03-03 21:23:08</sys_created_on>
+            <sys_id>236926020f623100c8badf2be1050e42</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="What to create" display_value="What to create" name="sn_trendseeker_trend_detector_rules" sys_domain="global" view="Default view">661475350132210002adb94da6e1bdba</sys_ui_section>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2015-03-03 21:23:08</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>What to create</caption>
+            <header>false</header>
+            <name>sn_trendseeker_trend_detector_rules</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2014-08-28 12:56:14</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>661475350132210002adb94da6e1bdba</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>What to create</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+            <sys_update_name>sys_ui_section_661475350132210002adb94da6e1bdba</sys_update_name>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2014-08-28 12:56:14</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

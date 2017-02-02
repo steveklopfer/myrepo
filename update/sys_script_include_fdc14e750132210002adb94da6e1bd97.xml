@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>sn_trendseeker.TrendSeekerHelper</api_name>
+        <client_callable>false</client_callable>
+        <description>Helper functions to support the Trend Seeker application</description>
+        <name>TrendSeekerHelper</name>
+        <script><![CDATA[var TrendSeekerHelper = Class.create();
+
+TrendSeekerHelper.prototype = {
+	initialize: function() {
+		this.debug = gs.getProperty('sn_trendseeker.debug');
+		this.calculatedThreshold = 0;
+		this.historicCounts = [];
+	},
+	
+	//Run all active TrendSeeker rules
+	runRules: function(){
+		//Expire any 'cooled down' existing Correlations
+		this.expireCorrelations();
+		//Gather and associate records to existing Correlations still in 'cool down' window
+		this.processCoolDown();
+		//Process rules normally
+		if (this.debug == 'true')
+			gs.info('**** Beginning run of TrendSeeker rules');
+		var TDrule = new GlideRecord("sn_trendseeker_trend_detector_rules");
+		TDrule.addQuery('active', true);
+		TDrule.query();
+		while (TDrule.next()) {
+			this.processRule(TDrule);
+		}
+	},
+	
+	//Process individual TrendSeeker rule
+	processRule: function(rule){
+		if (this.debug == 'true')
+			gs.info('**** Running rule ' + rule.title);
+		
+		//Get encoded query for 'Created on last [timeframe] hours'
+		var timeEncQuery = 'sys_created_onONLast ' + rule.timeframe + ' hours@javascript:gs.hoursAgo(' + rule.timeframe + ')@javascript:gs.hoursAgo(0)';
+		
+		//Run GlideAggregate against table w/ conditions to gather counts
+		var count = new GlideAggregate(rule.detection_table);
+		if (!rule.condition.nil())
+			count.addEncodedQuery(rule.condition);
+		count.addEncodedQuery(timeEncQuery);
+		
+		var trueCount = 0;
+		var threshold = 0;
+		
+		//Handle non-aggregate counts
+		if (rule.apply_aggregate == false){
+			count.addAggregate('COUNT');
+			count.query();
+			if (count.next()){
+				threshold = this._getThreshold(rule, '');
+				trueCount = this._getCount(rule, timeEncQuery, '');
+				
+				if (threshold != 999999){
+					if (rule.direction == 'above' && trueCount > threshold){
+						this._processRecs(rule, timeEncQuery, '', '');
+						if (this.debug == 'true')
+							gs.info('**** Threshold met: Count for ' + rule.title + ' is ' + trueCount + ', above threshold of ' + threshold);
+					}
+					else if (rule.direction == 'below' && trueCount < threshold){
+						this._processRecs(rule, timeEncQuery, '', '');
+						if (this.debug == 'true')
+							gs.info('**** Threshold met: Count for ' + rule.title + ' is ' + trueCount + ', below threshold of ' + threshold);
+					}
+				}
+				else if (this.debug == 'true')
+					gs.info('**** First run of statistical rule ' + rule.title + ' - skipping correlation creation and generating first metric.');
+			}
+		}
+		//Handle aggregate counts
+		else if (rule.apply_aggregate == true){
+			count.addAggregate('COUNT', rule.aggregate_field);
+			count.query();
+			while (count.next()){
+				//Use evaluators to get aggID & aggValue
+				//Generating temp Threshold Script record to hold script
+				//This is a hack, limited by GlideScopedEvaluator
+				var aggID;
+				var aggValue;
+				var evaluator;
+				//Get aggValue
+				var propScript = new GlideRecord("sn_trendseeker_trend_detector_scripts");
+				propScript.initialize();
+				propScript.script = 'count.' + rule.aggregate_field + '.getDisplayValue()';
+				evaluator = new GlideScopedEvaluator();
+				evaluator.putVariable('count', count);
+				aggValue = evaluator.evaluateScript(propScript, 'script', null);
+				//Get aggID
+				propScript = new GlideRecord("sn_trendseeker_trend_detector_scripts");
+				propScript.initialize();
+				propScript.script = 'count.' + rule.aggregate_field + '.toString()';
+				evaluator = new GlideScopedEvaluator();
+				evaluator.putVariable('count', count);
+				aggID = evaluator.evaluateScript(propScript, 'script', null);
+				
+				threshold = this._getThreshold(rule, aggID);
+				trueCount = this._getCount(rule, timeEncQuery, aggID);
+				
+				if (threshold != 999999){
+					if (rule.direction == 'above' && trueCount > threshold){
+						this._processRecs(rule, timeEncQuery, aggID, aggValue);
+						if (this.debug == 'true')
+							gs.info('**** Threshold met: Count for ' + rule.title + ' is ' + trueCount + ', above threshold of ' + threshold + '(aggID=' + aggID + ', aggValue=' + aggValue + ')');
+					}
+					else if (rule.direction == 'below' && trueCount < threshold){
+						this._processRecs(rule, timeEncQuery, aggID, aggValue);
+						if (this.debug == 'true')
+							gs.info('**** Threshold met: Count for ' + rule.title + ' is ' + trueCount + ', below threshold of ' + threshold + '(aggID=' + aggID + ', aggValue=' + aggValue + ')');
+					}
+				}
+				else if (this.debug == 'true')
+					gs.info('**** First run of statistical rule ' + rule.title + ' - skipping correlation creation and generating first metric.');
+			}
+		}
+	},
+	
+	//Set inactive any Correlations that are past the 'cool-down' period
+	expireCorrelations: function(){
+		if (this.debug == 'true')
+			gs.info('**** Beginning run of Trend Correlation expirations');
+		var now = new GlideDateTime();
+		var oldCorr = new GlideRecord("sn_trendseeker_trend_detector_correlations");
+		oldCorr.addQuery("active", true);
+		oldCorr.query();
+		while (oldCorr.next()) {
+			//var latestTime = oldCorr.last_finding.getGlideObject();
+			var latestTime = new GlideDateTime(oldCorr.last_finding);
+			var timeToAddms = oldCorr.trend_detector_rule.expiration * 60 * 60 * 1000;
+			latestTime.add(timeToAddms);
+			if (latestTime.getNumericValue() < now.getNumericValue()){
+				oldCorr.active = false;
+				oldCorr.update();
+			}
+		}
+	},
+	
+	//Gather any records to be associated to Correlations still in 'cool down' window
+	processCoolDown: function(){
+		if (this.debug == 'true')
+			gs.info('**** Beginning run of cool down processing');
+		var activeCorrelation = new GlideRecord("sn_trendseeker_trend_detector_correlations");
+		activeCorrelation.addQuery("active", true);
+		activeCorrelation.query();
+		while (activeCorrelation.next()) {
+			//Get encoded query for 'Created on last [cool down time] hours'
+			var timeEncQuery = 'sys_created_onONLast ' + activeCorrelation.trend_detector_rule.expiration + ' hours@javascript:gs.hoursAgo(' + activeCorrelation.trend_detector_rule.expiration + ')@javascript:gs.hoursAgo(0)^sys_created_on>' + activeCorrelation.sys_created_on;
+			var associatedRecs = this._getAssociatedRecs(activeCorrelation.trend_detector_rule, timeEncQuery, activeCorrelation.aggregate_id);
+			for (var i=0; i < associatedRecs.length; i++) {
+				//If a link already exists for this rec:rule combination, do nothing
+				//Else, associate this record with the existing Correlation
+				if (!this._isDupeLink(activeCorrelation.trend_detector_rule, associatedRecs[i])){
+					var createdRec = '';
+					if (activeCorrelation.trend_detector_rule.create_record == true){
+						var getLink = new GlideRecord("sn_trendseeker_trend_detector_links");
+						getLink.addQuery("trend_detector_correlation", activeCorrelation.sys_id.toString());
+						getLink.query();
+						if (getLink.next())
+							createdRec = getLink.created_record.sys_id.toString();
+					}
+					if (this.debug == 'true')
+						gs.info('**** Adding record ' + associatedRecs[i] + ' to existing active Correlation ' + activeCorrelation.number + ' based on cool down settings.');
+					this._createLink(activeCorrelation.trend_detector_rule, associatedRecs[i], activeCorrelation, createdRec);
+				}
+			}
+		}
+	},
+	
+	//Process the non-cool-down records associated with the triggered rule instance
+	_processRecs: function(rule, timeEncQuery, aggID, aggValue){
+		//Get all found record IDs
+		var allRecIDsArray = this._getAssociatedRecs(rule, timeEncQuery, aggID);
+		if (this.debug == 'true')
+			gs.info('**** All Matching Recs - ' + allRecIDsArray.toString());
+		//Iterate through all found records
+		for (var i = 0; i < allRecIDsArray.length; i++) {
+			var createdRec = '';
+			//If a link already exists, do nothing. Else, create a new link
+			if (!this._isDupeLink(rule, allRecIDsArray[i])){
+				//If there is already an active link for this rule, add new record to existing link
+				//Else, create new link with new 'creation record'
+				var activeLink = this._isActiveLink(rule, aggID);
+				if (activeLink == ''){
+					if (this.debug == 'true')
+						gs.info('**** Creating all new active link for ' + rule.title + ' and ' + allRecIDsArray[i]);
+					createdCorrelation = this._createNewCorrelation(rule, aggID, aggValue);
+					if (rule.create_record == true)
+						createdRec = this._createNewRec(rule, allRecIDsArray.toString(), aggID, aggValue);
+				}
+				else{
+					if (this.debug == 'true')
+						gs.info('**** Adding ' + allRecIDsArray[i] + ' to existing active ' + activeLink.created_record + ' link for ' + rule.title);
+					createdCorrelation = activeLink.trend_detector_correlation;
+					createdRec = activeLink.created_record;
+				}
+				this._createLink(rule, allRecIDsArray[i], createdCorrelation, createdRec);
+			}
+			else{
+				if (this.debug == 'true')
+					gs.info('**** Active link already exists for ' + rule.title + ' and ' + allRecIDsArray[i]);
+			}
+		}
+	},
+	
+	//Create a new TrendSeeker Link
+	_createLink: function(rule, detectedRec, createdCorrelation, createdRec){
+		var newLink = new GlideRecord("sn_trendseeker_trend_detector_links");
+		newLink.initialize();
+		newLink.trend_detector_rule = rule.sys_id.toString();
+		newLink.trend_detector_correlation = createdCorrelation.toString();
+		newLink.detected_record_table = rule.detection_table;
+		newLink.detected_record = detectedRec;
+		if (createdRec != ''){
+			newLink.created_record_table = rule.creation_table;
+			newLink.created_record = createdRec;
+		}
+		newLink.active = true;
+		newLink.insert();
+		//Reassess values for parent Correlation, given a new detection
+		this._setCorrelationValues(rule, detectedRec, createdCorrelation);
+	},
+	
+	//Return an array of record IDs associated to a particular rule instance run
+	_getAssociatedRecs: function(rule, timeEncQuery, aggID){
+		var allRecIDsArray = [];
+		var associatedRec = new GlideRecord(rule.detection_table);
+		if (!rule.condition.nil())
+			associatedRec.addEncodedQuery(rule.condition);
+		if (timeEncQuery != '')
+			associatedRec.addEncodedQuery(timeEncQuery);
+		if (rule.apply_aggregate == true)
+			associatedRec.addQuery(rule.aggregate_field, aggID);
+		associatedRec.query();
+		while (associatedRec.next()) {
+			var validRec = true;
+			//Process schedule inclusions/exclusions
+			if (rule.apply_schedule == true){
+				var sched = new GlideSchedule(rule.schedule.sys_id.toString());
+				var createdTime = new GlideDateTime(associatedRec.sys_created_on);
+				if (rule.schedule_type == 'inclusive' && !sched.isInSchedule(createdTime))
+					validRec = false;
+				else if (rule.schedule_type == 'exclusive' && sched.isInSchedule(createdTime))
+					validRec = false;
+			}
+			if (validRec == true)
+				allRecIDsArray.push(associatedRec.sys_id.toString());
+		}
+		return allRecIDsArray;
+	},
+	
+	//Check if a rule:record link already exists, return true/false
+	_isDupeLink: function(rule, record){
+		var dupe = new GlideRecord("sn_trendseeker_trend_detector_links");
+		dupe.addQuery("detected_record", record);
+		dupe.addQuery("trend_detector_rule", rule.sys_id.toString());
+		dupe.addQuery("trend_detector_correlation.active", true);
+		dupe.query();
+		if (dupe.next()) {
+			return true;
+		}
+		return false;
+	},
+	
+	//Check if a link is currently active for a rule, return the object if so
+	_isActiveLink: function(rule, aggID){
+		var returnVal = '';
+		var activeLink = new GlideRecord("sn_trendseeker_trend_detector_links");
+		activeLink.addQuery("trend_detector_rule", rule.sys_id.toString());
+		activeLink.addQuery("trend_detector_correlation.active", true);
+		if (rule.apply_aggregate == true){
+			activeLink.addQuery("trend_detector_correlation.aggregate_field", rule.aggregate_field);
+			activeLink.addQuery("trend_detector_correlation.aggregate_id", aggID);
+		}
+		activeLink.query();
+		if (activeLink.next()) {
+			returnVal = activeLink;
+		}
+		return returnVal;
+	},
+	
+	//Create a new record in response to a detected trend and return the new object
+	_createNewRec: function(rule, allRecIDs, aggID, aggValue){
+		//Initialize new record and insert it (to get a sys_id) before adding additional info
+		var newRecInit = new GlideRecord(rule.creation_table);
+		newRecInit.initialize();
+		var newRecID = newRecInit.insert();
+		var newRec = new GlideRecord(rule.creation_table);
+		newRec.get(newRecID);
+		
+		//Apply template to created record
+		if (rule.apply_template == true)
+			newRec.applyTemplate(rule.template.name);
+		//Attempt to set short description, in case script bails out below
+		try{newRec.short_description = 'Auto-created by TrendSeeker rule: ' + rule.title;}
+		catch(err1){}
+		//Apply script to created record
+		try{
+			var evaluator = new GlideScopedEvaluator();
+			evaluator.putVariable('newRec', newRec);
+			evaluator.putVariable('allRecIDs', allRecIDs);
+			evaluator.putVariable('aggValue', aggValue);
+			evaluator.putVariable('aggID', aggID);
+			evaluator.putVariable('rule', rule);
+			evaluator.evaluateScript(rule, 'creation_script', null);
+		}
+		catch(err2){
+			if (this.debug == 'true')
+				gs.info('**** Error in creation script for TrendSeeker Rule ' + rule.title);
+		}
+		var createdRecID = newRec.update();
+		return createdRecID;
+	},
+	
+	//Create a new Correlation in response to a detected trend and return the new object
+	_createNewCorrelation: function(rule, aggID, aggValue){
+		var newCorrelation = new GlideRecord('sn_trendseeker_trend_detector_correlations');
+		newCorrelation.initialize();
+		newCorrelation.aggregate_field = rule.aggregate_field;
+		newCorrelation.aggregate_id = aggID;
+		newCorrelation.aggregate_value = aggValue;
+		newCorrelation.trend_detector_rule = rule.sys_id.toString();
+		newCorrelation.active = true;
+		var createdCorrelation = newCorrelation.insert();
+		return createdCorrelation;
+	},
+	
+	//Reassess first and last finding times for correlation
+	_setCorrelationValues: function(rule, detectedRec, createdCorrelation){
+		var oldCorr = new GlideRecord('sn_trendseeker_trend_detector_correlations');
+		if (oldCorr.get(createdCorrelation)){
+			var newRec = new GlideRecord(rule.detection_table);
+			if (newRec.get(detectedRec)){
+				var recCreated = new GlideDateTime(newRec.sys_created_on).getNumericValue();
+				var lastFind = new GlideDateTime(oldCorr.last_finding).getNumericValue();
+				var firstFind = new GlideDateTime(oldCorr.first_finding).getNumericValue();
+				if (oldCorr.last_finding.nil() || recCreated > lastFind)
+					oldCorr.last_finding = newRec.sys_created_on;
+				if (oldCorr.first_finding.nil() || recCreated < firstFind)
+					oldCorr.first_finding = newRec.sys_created_on;
+				var corrRecs = this._getCorrelatedRecs(oldCorr.sys_id.toString());
+				var description = '';
+				if (rule.apply_aggregate == true){
+					var aggDisplay = '(empty)';
+					if (oldCorr.aggregate_value != '')
+						aggDisplay = oldCorr.aggregate_value;
+					description = corrRecs + ' records were found with ' + oldCorr.aggregate_field + ' value of ' + aggDisplay + ' between ' + oldCorr.first_finding.getDisplayValue() + ' and ' + oldCorr.last_finding.getDisplayValue();
+				}
+				else
+					description = corrRecs + ' records were found between ' + oldCorr.first_finding.getDisplayValue() + ' and ' + oldCorr.last_finding.getDisplayValue();
+				if (!rule.condition.nil())
+					description += ' with conditions matching ' + rule.condition + '.';
+				else
+					description += '.';
+				if (rule.detection_type == 'static_threshold')
+					description += ' This is ' + rule.direction + ' the defined threshold of ' + rule.threshold;
+				else if (rule.detection_type == 'scripted_threshold'){
+					var friendlyNum = Math.round(this.calculatedThreshold * 100) / 100;
+					description += ' This is ' + rule.direction + ' the threshold of ' + friendlyNum + ' calculated by script "' + rule.threshold_script.getDisplayValue() + '", based on available data from the past ' + rule.statistical_window + ' days (values:' + this.historicCounts.toString() + ')';
+				}
+				if (rule.apply_schedule == true)
+					description += ' ' + rule.schedule_type + ' of the schedule "' + rule.schedule.getDisplayValue() + '".';
+				else
+					description += '.';
+				oldCorr.description = description;
+				oldCorr.associated_records = corrRecs;
+				oldCorr.update();
+			}
+		}
+	},
+	
+	//Get # of recs associated to a provided Correlation record
+	_getCorrelatedRecs: function(corrID){
+		var totRecs = 0;
+		var numRecs = new GlideAggregate("sn_trendseeker_trend_detector_links");
+		numRecs.addQuery("trend_detector_correlation", corrID);
+		numRecs.addAggregate("COUNT");
+		numRecs.query();
+		if (numRecs.next()) {
+			totRecs = numRecs.getAggregate('COUNT');
+		}
+		return totRecs;
+	},
+	
+	//Write a new metric record
+	_writeMetric: function(rule, value, aggID){
+		var dupeMetric = new GlideRecord("sn_trendseeker_trend_detector_metrics");
+		dupeMetric.addQuery("rule", rule.sys_id.toString());
+		if (rule.apply_aggregate == true){
+			dupeMetric.addQuery("aggregate_field", rule.aggregate_field);
+			dupeMetric.addQuery("aggregate_id", aggID);
+		}
+		dupeMetric.addEncodedQuery("sys_created_onONLast 23 hours@javascript:gs.hoursAgo(23)@javascript:gs.hoursAgo(0)");
+		dupeMetric.query();
+		//If duplicate metric exists, update value
+		if (dupeMetric.next()) {
+			dupeMetric.value = value;
+			dupeMetric.update();
+			if (this.debug == 'true')
+				gs.info('**** Updated existing metric record for rule ' + rule.title + ' with value ' + value + ' (aggField=' + rule.aggregate_field + ', aggID=' + aggID + ').');
+		}
+		//Else, generate a new metric
+		else{
+			var newMetric = new GlideRecord("sn_trendseeker_trend_detector_metrics");
+			newMetric.initialize();
+			newMetric.rule = rule.sys_id.toString();
+			if (rule.apply_aggregate == true){
+				newMetric.aggregate_field = rule.aggregate_field;
+				newMetric.aggregate_id = aggID;
+			}
+			newMetric.value = value;
+			newMetric.insert();
+			if (this.debug == 'true')
+				gs.info('**** Creating new metric record for rule ' + rule.title + ' with value ' + value + ' (aggField=' + rule.aggregate_field + ', aggID=' + aggID + ').');
+		}
+	},
+	
+	//Get # of recs matching a rule
+	_getCount: function(rule, timeEncQuery, aggID){
+		var numTrueRecs = 0;
+		var numSkipped = 0;
+		var numRecs = new GlideRecord(rule.detection_table);
+		if (!rule.condition.nil())
+			numRecs.addEncodedQuery(rule.condition);
+		if (timeEncQuery != '')
+			numRecs.addEncodedQuery(timeEncQuery);
+		if (rule.apply_aggregate == true)
+			numRecs.addQuery(rule.aggregate_field, aggID);
+		numRecs.query();
+		while (numRecs.next()) {
+			var validRec = true;
+			//Process schedule inclusions/exclusions
+			if (rule.apply_schedule == true){
+				var sched = new GlideSchedule(rule.schedule.sys_id.toString());
+				var createdTime = new GlideDateTime(numRecs.sys_created_on);
+				if (rule.schedule_type == 'inclusive' && !sched.isInSchedule(createdTime))
+					validRec = false;
+				else if (rule.schedule_type == 'exclusive' && sched.isInSchedule(createdTime))
+					validRec = false;
+			}
+			if (validRec == true)
+				numTrueRecs++;
+			else
+				numSkipped++;
+		}
+		if (this.debug == 'true')
+			gs.info('**** For rule ' + rule.title + ', returning record count of ' + numTrueRecs + ', ' + numSkipped + ' records skipped due to schedule. (aggField=' + rule.aggregate_field + ', aggID=' + aggID + ').');
+		//Add a new metric record for statistical measurements
+		if (rule.detection_type == 'scripted_threshold' && numTrueRecs > 0)
+			this._writeMetric(rule, numTrueRecs, aggID);
+		return numTrueRecs;
+	},
+	
+	//Get threshold for a rule
+	_getThreshold: function(rule, aggID){
+		var returnVal = 999999;
+		var timeEncQuery = 'sys_created_onONLast ' + rule.statistical_window + ' days@javascript:gs.daysAgoStart(' + rule.statistical_window + ')@javascript:gs.daysAgoEnd(0)';
+		//Return hard threshold value
+		if (rule.detection_type == 'static_threshold')
+			returnVal = rule.threshold;
+		//Return scripted threshold value
+		else if (rule.detection_type == 'scripted_threshold'){
+			var countArray = [];
+			var topCount = new GlideRecord("sn_trendseeker_trend_detector_metrics");
+			topCount.addQuery("rule", rule.sys_id.toString());
+			topCount.addEncodedQuery("timeEncQuery");
+			topCount.setLimit(rule.statistical_window);
+			if (rule.apply_aggregate == true){
+				topCount.addQuery("aggregate_field", rule.aggregate_field);
+				topCount.addQuery("aggregate_id", aggID);
+			}
+			topCount.query();
+			while (topCount.next()){
+				countArray.push(parseInt(topCount.value.toString()));
+			}
+			if (countArray.length > 0){
+				//Add zero values for missing days
+				//(zero record days don't create metric records,
+				//but need to be accounted for as zeros)
+				countArray = this._padZero(countArray, rule);
+				//Get threshold script record for evaluator
+				var threshScript = new GlideRecord("sn_trendseeker_trend_detector_scripts");
+				if (threshScript.get(rule.threshold_script.sys_id.toString())) {
+					try{
+						var evaluator = new GlideScopedEvaluator();
+						evaluator.putVariable('countArray', countArray);
+						returnVal = evaluator.evaluateScript(threshScript, 'script', null);
+					}
+					catch(err2){
+						if (this.debug == 'true')
+							gs.info('**** Error in threshold script ' + rule.threshold_script.getDisplayValue());
+					}
+				}
+			}
+			this.calculatedThreshold = returnVal;
+			this.historicCounts = countArray;
+		}
+		if (this.debug == 'true')
+			gs.info('**** For rule ' + rule.title + ', returning ' + rule.detection_type + ' threshold of ' + returnVal + ' over the past ' + rule.statistical_window + ' days. (aggField=' + rule.aggregate_field + ', aggID=' + aggID + ', script=' + rule.threshold_script.getDisplayValue() + ')');
+		return returnVal;
+	},
+	
+	//Pad value array with zeros to account for missing metrics
+	//(Zero value days don't create metric records, but need to be counted)
+	_padZero: function(countArray, rule){
+		var totalValues = countArray.length;
+		var statWindow = rule.statistical_window;
+		if (totalValues == statWindow){
+			if (this.debug == 'true')
+				gs.info('**** ' + totalValues + ' records found and ' + statWindow + ' records needed for rule ' + rule.title + '. Returning array complete. (Array=' + countArray.toString() + ').');
+			return countArray;
+		}
+		else{
+			var statsBegan = new GlideDateTime(rule.statistics_begin).getNumericValue();
+			var now = new GlideDateTime().getNumericValue();
+			var daysGathered = Math.floor((now - statsBegan)/1000/60/60/24);
+			var daysNeeded;
+			if (daysGathered > statWindow)
+				daysNeeded = statWindow;
+			else
+				daysNeeded = daysGathered;
+			var numPad = 0;
+			while (countArray.length < daysNeeded){
+				countArray.push(0);
+				numPad++;
+			}
+			if (this.debug == 'true')
+				gs.info('**** ' + totalValues + ' records found and ' + statWindow + ' records needed for rule ' + rule.title + '. Data has been gathering for ' + daysGathered + ' days. Padded array with ' + numPad + ' zeros before returning. (Array=' + countArray.toString() + ').');
+			return countArray;
+		}
+	},
+	
+	type: 'TrendSeekerHelper'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+        <sys_created_on>2014-08-28 14:03:30</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>fdc14e750132210002adb94da6e1bd97</sys_id>
+        <sys_mod_count>246</sys_mod_count>
+        <sys_name>TrendSeekerHelper</sys_name>
+        <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+        <sys_policy>protected</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+        <sys_update_name>sys_script_include_fdc14e750132210002adb94da6e1bd97</sys_update_name>
+        <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+        <sys_updated_on>2015-03-11 20:22:13</sys_updated_on>
+    </sys_script_include>
+</record_update>

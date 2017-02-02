@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_number">
+    <sys_number action="INSERT_OR_UPDATE">
+        <category display_value="" name="sn_trendseeker_trend_detector_metrics">sn_trendseeker_trend_detector_metrics</category>
+        <maximum_digits>7</maximum_digits>
+        <number>1000</number>
+        <prefix>TRM</prefix>
+        <sys_class_name>sys_number</sys_class_name>
+        <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+        <sys_created_on>2015-03-09 01:21:09</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>6edf41b70f623100c8badf2be1050e46</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>TRM</sys_name>
+        <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+        <sys_update_name>sys_number_6edf41b70f623100c8badf2be1050e46</sys_update_name>
+        <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+        <sys_updated_on>2015-03-09 01:21:09</sys_updated_on>
+    </sys_number>
+</record_update>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload</directory>
+        <documentkey>316ffe540f723100c8badf2be1050e11</documentkey>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;record_update table="sn_trendseeker_trend_detector_scripts"&gt;
+    &lt;sn_trendseeker_trend_detector_scripts action="INSERT_OR_UPDATE"&gt;
+        &lt;name&gt;Highest Value&lt;/name&gt;
+        &lt;script&gt;&lt;![CDATA[//Available variables:
+//countArray - float array of historic count values for the rule (based on the rule's statistical window and amount of gathered history - not necessarily in chronological order)
+//
+//Result variable:
+//answer - calculated threshold (integer or float)
+
+/* Returns the highest number in the value set */
+
+var bigNum = countArray[0];
+for (var i = 1; i &lt; countArray.length; i++) {
+	if (countArray[i] &gt; bigNum)
+		bigNum = countArray[i];
+}
+answer = bigNum;	]]&gt;&lt;/script&gt;
+        &lt;sys_created_by&gt;ben.hollifield@snc_SHARE&lt;/sys_created_by&gt;
+        &lt;sys_created_on&gt;2015-03-10 22:45:29&lt;/sys_created_on&gt;
+        &lt;sys_id&gt;316ffe540f723100c8badf2be1050e11&lt;/sys_id&gt;
+        &lt;sys_mod_count&gt;6&lt;/sys_mod_count&gt;
+        &lt;sys_updated_by&gt;ben.hollifield@snc_SHARE&lt;/sys_updated_by&gt;
+        &lt;sys_updated_on&gt;2015-03-11 12:45:18&lt;/sys_updated_on&gt;
+    &lt;/sn_trendseeker_trend_detector_scripts&gt;
+&lt;/record_update&gt;
+</payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+        <sys_created_on>2015-03-11 02:03:02</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>679c6f980f723100c8badf2be1050eee</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Highest Value</sys_name>
+        <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+        <sys_update_name>sys_metadata_link_679c6f980f723100c8badf2be1050eee</sys_update_name>
+        <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+        <sys_updated_on>2015-03-12 01:49:12</sys_updated_on>
+        <tablename>sn_trendseeker_trend_detector_scripts</tablename>
+    </sys_metadata_link>
+</record_update>

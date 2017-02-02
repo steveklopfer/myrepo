@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="TrendSeeker Correlations" max_length="40" name="sn_trendseeker_trend_detector_correlations" type="collection">
+        <element default="true" hint="Is the Correlation instance still active for future record additions?" label="Active" max_length="40" name="active" type="boolean"/>
+        <element hint="Aggregate field associated to the Correlation" label="Aggregate field" max_length="40" name="aggregate_field" read_only="true" type="string"/>
+        <element hint="Sys_id of the aggregate field value associated to the Correlation" label="Aggregate ID" max_length="40" name="aggregate_id" read_only="true" type="string"/>
+        <element hint="Display value of the aggregate field value associated to the Correlation" label="Aggregate value" max_length="40" name="aggregate_value" read_only="true" type="string"/>
+        <element hint="Number of records associated to the Correlation" label="Associated records" max_length="40" name="associated_records" read_only="true" type="integer"/>
+        <element hint="Description of this Correlation" label="Description" max_length="1000" name="description" read_only="true" type="string"/>
+        <element hint="First finding of this Correlation (based on the associated records sys_created_on time)" label="First finding" max_length="40" name="first_finding" read_only="true" type="glide_date_time"/>
+        <element hint="Most recent finding of this Correlation (based on the associated records sys_created_on time)" label="Last finding" max_length="40" name="last_finding" read_only="true" type="glide_date_time"/>
+        <element default="javascript:global.getNextObjNumberPadded();" display="true" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <element label="Rule" max_length="32" name="trend_detector_rule" read_only="true" reference="sn_trendseeker_trend_detector_rules" type="reference"/>
+        <index name="index">
+            <element name="trend_detector_rule"/>
+        </index>
+    </element>
+</database>

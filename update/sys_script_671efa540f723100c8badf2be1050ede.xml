@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>sn_trendseeker_trend_detector_rules</collection>
+        <condition>current.threshold_script.changes();</condition>
+        <description/>
+        <execute_function>true</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>TD - Clear old metrics</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[function onBefore(current, previous) {
+	var oldMetric = new GlideRecord("sn_trendseeker_trend_detector_metrics");
+	oldMetric.addQuery("rule", current.sys_id.toString());
+	oldMetric.deleteMultiple();
+	current.statistics_begin = new GlideDateTime();
+}]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+        <sys_created_on>2015-03-10 22:41:08</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>671efa540f723100c8badf2be1050ede</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>TD - Clear old metrics</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+        <sys_update_name>sys_script_671efa540f723100c8badf2be1050ede</sys_update_name>
+        <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+        <sys_updated_on>2015-03-10 22:59:08</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=671efa540f723100c8badf2be1050ede"/>
+</record_update>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="apply_template" label="Apply template?" language="en" table="sn_trendseeker_trend_detector_rules">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>apply_template</element>
+            <help/>
+            <hint>Apply template to created record?</hint>
+            <label>Apply template?</label>
+            <language>en</language>
+            <name>sn_trendseeker_trend_detector_rules</name>
+            <plural>Apply template?</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+            <sys_created_on>2014-08-28 12:44:33</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_id>2761bdf10132210002adb94da6e1bd35</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_name>Apply template?</sys_name>
+            <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+            <sys_update_name>sys_documentation_sn_trendseeker_trend_detector_rules_apply_template_en</sys_update_name>
+            <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+            <sys_updated_on>2014-08-29 16:15:18</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

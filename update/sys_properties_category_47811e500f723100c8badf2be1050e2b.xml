@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_properties_category">
+    <sys_properties_category action="INSERT_OR_UPDATE">
+        <name>TrendSeeker</name>
+        <sys_class_name>sys_properties_category</sys_class_name>
+        <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+        <sys_created_on>2015-03-10 19:25:19</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>47811e500f723100c8badf2be1050e2b</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>TrendSeeker</sys_name>
+        <sys_package display_value="TrendSeeker vSB" source="sn_trendseeker">29931d020f2631008c6ee1b8b1050e5b</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="TrendSeeker vSB">29931d020f2631008c6ee1b8b1050e5b</sys_scope>
+        <sys_update_name>sys_properties_category_47811e500f723100c8badf2be1050e2b</sys_update_name>
+        <sys_updated_by>ben.hollifield@snc_SHARE</sys_updated_by>
+        <sys_updated_on>2015-03-11 02:13:48</sys_updated_on>
+        <title><![CDATA[<p> <b>System Properties &amp; Details for TrendSeeker</b></p>
+<p>TrendSeeker is a powerful tool for identifying and acting upon trends detected in your ServiceNow instance. Utilize the included TrendSeeker rules and Threshold scripts to understand the available capabilities and configuration options. It is recommended that you display annotations on each TrendSeeker form (by clicking the circled &#39;?&#39; in the header) for useful information.</p>
+<p><b> </b></p>]]></title>
+    </sys_properties_category>
+    <sys_translated_text action="delete_multiple" query="documentkey=47811e500f723100c8badf2be1050e2b"/>
+</record_update>

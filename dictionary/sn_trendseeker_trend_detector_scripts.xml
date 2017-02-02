@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Threshold Scripts" max_length="40" name="sn_trendseeker_trend_detector_scripts" type="collection">
+        <element display="true" label="Name" mandatory="true" max_length="100" name="name" type="string"/>
+        <element default="//Available variables:&#13;&#10;//countArray - float array of historic count values for the rule (based on the rule's statistical window and amount of gathered history - not necessarily in chronological order)&#13;&#10;//&#13;&#10;//Result variable:&#13;&#10;//answer - calculated threshold (integer or float)" label="Script" mandatory="true" max_length="8000" name="script" type="script_plain"/>
+    </element>
+</database>

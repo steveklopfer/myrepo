@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_app">
+    <sys_app action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <enforce_license>log</enforce_license>
+        <js_level/>
+        <licensable>true</licensable>
+        <license_model>none</license_model>
+        <logo/>
+        <menu/>
+        <name>TrendSeeker vSB</name>
+        <private>false</private>
+        <restrict_table_access>false</restrict_table_access>
+        <runtime_access_tracking/>
+        <scope>sn_trendseeker</scope>
+        <scoped_administration>false</scoped_administration>
+        <short_description> TrendSeeker proactively identifies and reacts to emerging trends in your ServiceNow instance.</short_description>
+        <source>sn_trendseeker</source>
+        <store_correlation_id/>
+        <store_url/>
+        <sys_class_name>sys_app</sys_class_name>
+        <sys_code/>
+        <sys_created_by>ben.hollifield@snc_SHARE</sys_created_by>
+        <sys_created_on>2015-03-03 15:08:05</sys_created_on>
+        <sys_id>29931d020f2631008c6ee1b8b1050e5b</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_updated_by>sean.barrett@snc</sys_updated_by>
+        <sys_updated_on>2016-03-16 02:42:10</sys_updated_on>
+        <template/>
+        <trackable>true</trackable>
+        <user_role/>
+        <vendor/>
+        <vendor_prefix/>
+        <version>1.4</version>
+    </sys_app>
+</record_update>
